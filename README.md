@@ -1,26 +1,19 @@
-<h1 align="center">React Boilerplate</h1>
+<h1 align="center">Testes automatizados com Cypress</h1>
 
-## 🚀 Boilerplate para uma aplicação React com Vite
+## 🚀 Principais tecnologias utilizadas
 
-#### Recursos incluídos:
+- React
+- Cypress
 
-- **Configuração do Vite** para carregamento rápido
-- **ESLint + Prettier** para manter o código limpo e padronizado
-- **Aliases path** para facilitar importações
-- **Vitest** para testes unitários e de integração
-- **Husky** para gerenciar Git hooks
-- **Interface responsiva** com sidebar e navbar adaptáveis
-- **Dark mode** integrado
-- **Tailwind CSS** para estilização rápida e flexível
+## 🖥️ Sobre
+
+<p align="justify">Projeto focado no estudo de testes automatizados de ponta a ponta com a ferramenta Cypress.</p>
 
 ## 🔧 Principais comandos utilizados
 
-- yarn create vite (**Vite**)
-- yarn create @eslint/config (**ESLint**)
-- yarn add eslint-config-prettier prettier -D (**Prettier**)
-- yarn add -D tailwindcss postcss autoprefixer (**Tailwindcss**)
-- npx tailwindcss init -p (**Tailwindcss init**)
-- yarn add -D @testing-library/dom @testing-library/jest-dom @testing-library/react jsdom vitest @testing-library/user-event @vitest/coverage-v8 (**Vitest e React Testing Library**)
+```
+yarn add -D cypress
+```
 
 ## 🕹️ Instalação
 
@@ -30,7 +23,7 @@ Instale também o Yarn caso não o tenha com o comando `npm i -g yarn`, em segui
 
 Utilize o comando `yarn` para instalar os pacotes necessários.
 
-OBS: o deploy desta aplicação está sendo feito <a href="https://react-boilerplatee.netlify.app" target="_blank">neste link</a>.
+E por fim, execute os testes com o comando `yarn test`.
 
 ## 🐧 Autor
 
