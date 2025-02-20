@@ -9,9 +9,7 @@
 		"format": "prettier --write .",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
-		"test": "",
-		"test:watch": "",
-		"test:coverage": "",
+		"cy": "cypress open",
 		"prepare": "husky"
 	},
 	"dependencies": {
