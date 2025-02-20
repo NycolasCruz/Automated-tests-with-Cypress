@@ -40,7 +40,9 @@ export function NewItem({ list, setList }: Props) {
 			<form
 				style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem" }}
 			>
-				<label htmlFor="new-item">Adicione um novo item à lista</label>
+				<label htmlFor="new-item" data-cy="new-item-label">
+					Adicione um novo item à lista
+				</label>
 
 				<input id="new-item" value={value} onChange={(event) => setValue(event.target.value)} />
 
