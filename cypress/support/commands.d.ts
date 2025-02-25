@@ -1,5 +1,5 @@
 declare namespace Cypress {
 	interface Chainable {
-		dataCy(value: string): Chainable<JQuery<HTMLElement>>;
+		dataCy(selector: string): Chainable<JQuery<HTMLElement>>;
 	}
 }
