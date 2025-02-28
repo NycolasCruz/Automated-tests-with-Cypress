@@ -9,6 +9,7 @@
 		"format": "prettier --write .",
 		"build": "tsc && vite build",
 		"preview": "vite preview",
+		"test": "start-server-and-test start http://localhost:8000 cy:run",
 		"cy:run": "cypress run",
 		"cy:open": "cypress open --e2e",
 		"prepare": "husky"
@@ -40,6 +41,7 @@
 		"husky": "^9.1.7",
 		"prettier": "^2.8.8",
 		"prop-types": "15.8.1",
+		"start-server-and-test": "^2.0.10",
 		"typescript": "^5.0.2",
 		"typescript-eslint": "^8.18.2",
 		"vite": "^4.3.9"
