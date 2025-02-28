@@ -12,7 +12,7 @@
 ## 🔧 Principais comandos utilizados
 
 ```
-yarn add -D cypress
+yarn add -D cypress @types/mocha @types/chai start-server-and-test
 ```
 
 ## 🕹️ Instalação
