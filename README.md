@@ -12,7 +12,7 @@
 ## 🔧 Principais comandos utilizados
 
 ```
-yarn add -D cypress @types/jest
+yarn add -D cypress @types/mocha @types/chai start-server-and-test
 ```
 
 ## 🕹️ Instalação
@@ -23,7 +23,7 @@ Instale também o Yarn caso não o tenha com o comando `npm i -g yarn`, em segui
 
 Utilize o comando `yarn` para instalar os pacotes necessários.
 
-E por fim, abra a interface gráfica do Cypress com o comando `yarn cy`.
+E por fim, execute os testes com o comando `yarn test`.
 
 ## 🐧 Autor
 
