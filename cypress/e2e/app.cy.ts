@@ -1,18 +1,10 @@
-// descrever melhor o que o teste faz, em inglês
-
-describe("página inicial", () => {
-	before(() => {
-		cy.visit("http://localhost:8000/");
+describe("manipulando itens", () => {
+	beforeEach(() => {
+		cy.visit("");
 	});
 
 	it("deve clicar adicionar Pokémons novos à lista e verificar se a mensagem de feedback aparece", () => {
-		cy.dataCy("add-pokémons-button").click();
-		cy.dataCy("status-message")
-			.should("exist") //asserção
-			.and("have.text", "Pokémons adicionados com sucesso!");
-		// cy.dataCy("status-message").should("have.text", "Pokémons adicionados com sucesso!");
-		// Assertions
-
-		// testar o exist com um d-none
+		cy.dataCy("add-random-pokémons-button").click();
+		cy.dataCy("status-message").should("have.text", "Pokémons adicionados com sucesso!");
 	});
 });
