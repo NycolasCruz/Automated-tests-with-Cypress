@@ -1,6 +1,8 @@
 import { FormEvent, useState } from "react";
 import axios from "axios";
 
+import "./styles.scss";
+
 type Props = {
 	list: string[];
 	setList: (list: string[]) => void;
@@ -53,9 +55,7 @@ export function NewItem({ list, setList }: Props) {
 
 	return (
 		<>
-			<form
-				style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem" }}
-			>
+			<form>
 				<label htmlFor="new-item">Adicione um novo Pokémon à lista</label>
 
 				<input
@@ -65,7 +65,7 @@ export function NewItem({ list, setList }: Props) {
 					data-cy="new-item-input"
 				/>
 
-				<div style={{ display: "flex", gap: "0.5rem" }}>
+				<div id="add-button">
 					<button
 						disabled={!value}
 						onClick={(event) => handleAddingTheItemToTheList(event)}

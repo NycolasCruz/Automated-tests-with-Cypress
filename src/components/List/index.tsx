@@ -1,3 +1,5 @@
+import "./styles.scss";
+
 type Props = {
 	list: string[];
 	setList: (list: string[]) => void;
@@ -13,18 +15,9 @@ export function List({ list, setList }: Props) {
 	}
 
 	return (
-		<ul style={{ display: "flex", flexDirection: "column", gap: "0.5rem", padding: 0, margin: 0 }}>
+		<ul>
 			{list.map((item, index) => (
-				<li
-					key={`item-${index}`}
-					style={{
-						width: "100%",
-						display: "flex",
-						justifyContent: "space-between",
-						gap: "0.5rem",
-						textTransform: "capitalize",
-					}}
-				>
+				<li key={`item-${index}`}>
 					{item}
 					<button onClick={() => handleTheRemovalOfTheItemFromTheList(index)}>Remover</button>
 				</li>

@@ -7,17 +7,8 @@ export function App() {
 	const [list, setList] = useState<string[]>([]);
 
 	return (
-		<div
-			style={{
-				display: "flex",
-				flexDirection: "column",
-				alignItems: "center",
-				justifyContent: "center",
-				marginTop: "2rem",
-			}}
-		>
+		<div id="app">
 			<NewItem list={list} setList={setList} />
-
 			<List list={list} setList={setList} />
 		</div>
 	);
