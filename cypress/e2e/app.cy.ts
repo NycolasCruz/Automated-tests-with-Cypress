@@ -8,12 +8,12 @@ describe("manipulando itens", () => {
 	});
 
 	it("deve adicionar Pokémons novos à lista, verificar se a mensagem de feedback aparece e está correta e verificar se o formulário foi limpo ao final", () => {
-		cy.dataCy("new-pokemons-input").type("Pikachu");
+		cy.dataCy("new-pokemon-input").type("Pikachu");
 		cy.dataCy("add-pokemons-button").click();
 
 		cy.dataCy("status-message").should("have.text", "Pokémon adicionado com sucesso!");
 
-		cy.dataCy("new-pokemons-input").should("have.value", "");
+		cy.dataCy("new-pokemon-input").should("have.value", "");
 	});
 
 	it("deve adicionar Pokémons aleatórios à lista e verificar se a mensagem de feedback aparece e está correta", () => {

@@ -56,13 +56,13 @@ export function NewItem({ list, setList }: Props) {
 	return (
 		<>
 			<form>
-				<label htmlFor="new-pokemons-input">Adicione um novo Pokémon à lista</label>
+				<label htmlFor="new-pokemon-input">Adicione um novo Pokémon à lista</label>
 
 				<input
-					id="new-pokemons-input"
+					id="new-pokemon-input"
 					value={value}
 					onChange={(event) => setValue(event.target.value)}
-					data-cy="new-pokemons-input"
+					data-cy="new-pokemon-input"
 				/>
 
 				<div id="add-button">
