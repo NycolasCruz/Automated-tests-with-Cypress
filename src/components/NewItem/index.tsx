@@ -56,25 +56,25 @@ export function NewItem({ list, setList }: Props) {
 	return (
 		<>
 			<form>
-				<label htmlFor="new-pokémons-input">Adicione um novo Pokémon à lista</label>
+				<label htmlFor="new-pokemons-input">Adicione um novo Pokémon à lista</label>
 
 				<input
-					id="new-pokémons-input"
+					id="new-pokemons-input"
 					value={value}
 					onChange={(event) => setValue(event.target.value)}
-					data-cy="new-pokémons-input"
+					data-cy="new-pokemons-input"
 				/>
 
 				<div id="add-button">
 					<button
 						disabled={!value}
 						onClick={(event) => handleAddingTheItemToTheList(event)}
-						data-cy="add-pokémons-button"
+						data-cy="add-pokemons-button"
 					>
 						Adicionar
 					</button>
 
-					<button onClick={handleAddingRandomItemsToTheList} data-cy="add-random-pokémons-button">
+					<button onClick={handleAddingRandomItemsToTheList} data-cy="add-random-pokemons-button">
 						Adicionar Pokémons aleatórios
 					</button>
 				</div>
