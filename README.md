@@ -15,7 +15,7 @@
 yarn add -D cypress @types/mocha @types/chai start-server-and-test
 ```
 
-## 🕹️ Instalação
+## 🕹️ Utilização
 
 Certifique-se de ter o NodeJS instalado na sua máquina, caso não tenha, instale seu executável clicando neste <a href="https://nodejs.org/pt-br/download/">link</a>.
 
@@ -23,7 +23,7 @@ Instale também o Yarn caso não o tenha com o comando `npm i -g yarn`, em segui
 
 Utilize o comando `yarn` para instalar os pacotes necessários.
 
-E por fim, execute os testes com o comando `yarn test`.
+E por fim, execute os testes com o comando `yarn cy:test`.
 
 ## 🐧 Autor
 
