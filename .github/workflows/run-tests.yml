@@ -54,8 +54,8 @@ jobs:
       # - name: Install dependencies
       #   run: yarn
 
-      - name: Cypress run
-        run: cypress-io/github-action@v5
+      - name: Cypress.io
+        uses: cypress-io/github-action@v6.10.1
 
       - name: Set final commit status
         uses: myrotvorets/set-commit-status-action@master
