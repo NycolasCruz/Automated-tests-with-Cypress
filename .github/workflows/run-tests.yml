@@ -54,8 +54,8 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Run tests
-        run: yarn cy:test
+      - name: Cypress run
+        run: cypress-io/github-action@v5
 
       - name: Set final commit status
         uses: myrotvorets/set-commit-status-action@master
