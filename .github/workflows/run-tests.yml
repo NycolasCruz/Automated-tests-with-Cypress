@@ -54,8 +54,8 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6.10.1
         with:
-          start: yarn start
-          wait-on: "http://localhost:8080"
+          start: npx vite --port 8000
+          wait-on: "http://localhost:8000"
 
       - name: Set final commit status
         uses: myrotvorets/set-commit-status-action@master
