@@ -51,11 +51,25 @@ jobs:
         with:
           node-version: 20
 
-      - name: Install dependencies
-        run: yarn
+      - name: Cypress tests
+        uses: cypress-io/github-action@v6.10.1
+        with:
+          start: npx vite --port 8000
+          wait-on: "http://localhost:8000"
 
-      - name: Run tests
-        run: yarn cy:test
+      # after the test run completes store videos and any screenshots
+      - uses: actions/upload-artifact@v4
+        # add the line below to store screenshots only on failures
+        if: failure()
+        with:
+          name: cypress-screenshots
+          path: cypress/screenshots
+          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cypress-videos
+          path: cypress/videos
+          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
 
       - name: Set final commit status
         uses: myrotvorets/set-commit-status-action@master
