@@ -5,15 +5,12 @@ on:
     types: [created]
 
 jobs:
-  run_tests:
+  setup_and_test:
     runs-on: ubuntu-latest
     if: github.event.issue.pull_request && github.event.comment.body == 'test'
-    permissions: write-all
-
-    strategy:
-      fail-fast: false # https://github.com/cypress-io/github-action/issues/48
-      matrix:
-        containers: [1, 2] # Uses 2 parallel instances
+    outputs:
+      pr_number: ${{ steps.get_pr_number.outputs.data }}
+      pr_sha: ${{ fromJson(steps.fetch_pr_info.outputs.data).head.sha }}
 
     steps:
       - name: Get PR number
@@ -26,8 +23,8 @@ jobs:
           echo "data=$PR_NUM" >> $GITHUB_OUTPUT
 
       - name: Fetch PR info
-        uses: octokit/request-action@v2.x
         id: fetch_pr_info
+        uses: octokit/request-action@v2.x
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -41,54 +38,66 @@ jobs:
       - name: Set commit status as pending
         uses: myrotvorets/set-commit-status-action@master
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PERSONAL_TOKEN }}
           status: pending
           context: Run tests
           sha: ${{ fromJson(steps.fetch_pr_info.outputs.data).head.sha }}
 
+  run_tests:
+    needs: setup_and_test
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        container: [1, 2, 3]
+
+    steps:
       - name: Check out code
         uses: actions/checkout@v3
         with:
-          ref: ${{ fromJson(steps.fetch_pr_info.outputs.data).head.sha }}
+          ref: ${{ needs.setup_and_test.outputs.pr_sha }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 20
 
-      - name: Cypress tests
+      - name: Run Cypress tests
         uses: cypress-io/github-action@v6.10.1
         with:
           start: npx vite --port 8000
           wait-on: "http://localhost:8000"
-          # Records to Cypress Cloud
-          # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
           record: true
-          parallel: true # Runs test in parallel using settings above
+          parallel: true
         env:
-          # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      # after the test run completes store videos and any screenshots
-      - uses: actions/upload-artifact@v4
-        # add the line below to store screenshots only on failures
+      - name: Upload screenshots on failure
         if: failure()
+        uses: actions/upload-artifact@v4
         with:
           name: cypress-screenshots
           path: cypress/screenshots
-          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
-      - uses: actions/upload-artifact@v4
+          if-no-files-found: ignore
+
+      - name: Upload videos
+        uses: actions/upload-artifact@v4
         with:
           name: cypress-videos
           path: cypress/videos
-          if-no-files-found: ignore # 'warn' or 'error' are also available, defaults to `warn`
+          if-no-files-found: ignore
 
+  final_status:
+    needs: [setup_and_test, run_tests]
+    runs-on: ubuntu-latest
+    if: always() && github.event.issue.pull_request && github.event.comment.body == 'test'
+
+    steps:
       - name: Set final commit status
         uses: myrotvorets/set-commit-status-action@master
         with:
-          sha: ${{ fromJson(steps.fetch_pr_info.outputs.data).head.sha }}
-          token: ${{ secrets.GITHUB_TOKEN }}
-          status: ${{ job.status }}
+          sha: ${{ needs.setup_and_test.outputs.pr_sha }}
+          token: ${{ secrets.PERSONAL_TOKEN }}
+          status: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
           context: Run tests
