@@ -1,5 +1,7 @@
 <h1 align="center">Testes automatizados com Cypress</h1>
 
+[![Cypress test](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/simple/46bowk&style=flat&logo=cypress)](https://cloud.cypress.io/projects/46bowk/runs)
+
 ## 🚀 Principais tecnologias utilizadas
 
 - React
