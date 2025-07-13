@@ -69,6 +69,7 @@ jobs:
           wait-on: "http://localhost:8000"
           record: true
           parallel: true
+          group: PR-${{ needs.setup_and_test.outputs.pr_number }}
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
