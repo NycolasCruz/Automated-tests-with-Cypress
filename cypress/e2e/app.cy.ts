@@ -11,7 +11,7 @@ describe("Adicionando Pokémons", () => {
 		cy.dataCy("new-pokemon-input").type("Pikachu");
 		cy.dataCy("add-pokemons-button").click();
 
-		cy.dataCy("status-message").should("have.text", "Pokémon adicionado com sucesso!");
+		cy.dataCy("message").should("have.text", "Pokémon adicionado com sucesso!");
 
 		cy.dataCy("new-pokemon-input").should("have.value", "");
 	});
