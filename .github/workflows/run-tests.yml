@@ -7,7 +7,7 @@ on:
 jobs:
   setup_and_test:
     runs-on: ubuntu-latest
-    if: github.event.issue.pull_request && github.event.comment.body == 'test'
+    if: github.event.issue.pull_request && github.event.comment.body == "test"
     outputs:
       pr_number: ${{ steps.get_pr_number.outputs.data }}
       pr_sha: ${{ fromJson(steps.fetch_pr_info.outputs.data).head.sha }}
@@ -92,7 +92,7 @@ jobs:
   final_status:
     needs: [setup_and_test, run_tests]
     runs-on: ubuntu-latest
-    if: always() && github.event.issue.pull_request && github.event.comment.body == 'test'
+    if: always() && github.event.issue.pull_request && github.event.comment.body == "test"
 
     steps:
       - name: Set final commit status
