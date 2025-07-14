@@ -9,7 +9,7 @@ describe("Adicionando Pokémons", () => {
 
 	it("Deve adicionar Pokémons novos à lista, verificar se a mensagem de feedback aparece e está correta e verificar se o formulário foi limpo ao final", () => {
 		cy.dataCy("new-pokemon-input").type("Pikachu");
-		cy.dataCy("add-pokemons-button").click();
+		cy.dataCy("add-button").click();
 
 		cy.dataCy("status-message").should("have.text", "Pokémon adicionado com sucesso!");
 
