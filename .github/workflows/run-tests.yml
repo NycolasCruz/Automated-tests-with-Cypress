@@ -100,5 +100,5 @@ jobs:
         with:
           sha: ${{ needs.setup_and_test.outputs.pr_sha }}
           token: ${{ secrets.PERSONAL_TOKEN }}
-          status: ${{ contains(needs.*.result, 'failure') && 'failure' || 'success' }}
+          status: ${{ contains(needs.*.result, 'failure') && "failure" || "success" }}
           context: Run tests
